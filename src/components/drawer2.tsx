@@ -115,7 +115,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 // -------------------------------------------------------------------------------- //
-const linkColor = '#6266ea';
+const linkColor = '#734E20'; 
 const linkStyle = {
   // margin: "1rem",
   textDecoration: "none",
