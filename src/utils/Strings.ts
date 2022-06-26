@@ -1,5 +1,5 @@
 export default class{
-    static appName:string = "مكتبة الكترونية";
+    static appName:string = "مكتبة الكتورنية - بوابة الاعضاء";
     static menuColor :string = '#F9F9F9';
     // --------------------------------------------------------------- //
     // control page direction
