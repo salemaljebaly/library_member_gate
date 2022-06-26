@@ -168,6 +168,61 @@ function AddBarrow() {
                   name="book"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
+                  value={bookId}
+                  label={Strings.departments}
+                  onChange={(e) =>
+                    setBookId(Number.parseInt(e.target.value.toString()))
+                  }
+                >
+                  {books.map((book: BookModel) => {
+                    return (
+                      <MenuItem key={book.id} value={book.id}>
+                        {book.bookName}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth disabled>
+                <InputLabel id="demo-simple-select-label" disabled>
+                  {Strings.memberName}
+                </InputLabel>
+                <Select
+                  name="member"
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={  members.id}
+                  label={Strings.departments}
+                  onChange={(e) =>
+                    setMemberId(Number.parseInt(e.target.value.toString()))
+                  }
+                >
+                  {members.map((member: MemberModel) => {
+                    return (
+                      <MenuItem key={member.id} value={member.id}>
+                        {member.fullName}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </Grid>
+            </>
+            :
+<>
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth 
+              >
+                
+                <InputLabel id="demo-simple-select-label">
+                  {Strings.bookName}
+                </InputLabel>
+                <Select
+                  name="book"
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
                   value={id != undefined ? singleBarrow?.book?.id : bookId}
                   label={Strings.departments}
                   onChange={(e) =>
@@ -193,62 +248,7 @@ function AddBarrow() {
                   name="member"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={ id != undefined ? singleBarrow?.member?.id : bookId}
-                  label={Strings.departments}
-                  onChange={(e) =>
-                    setMemberId(Number.parseInt(e.target.value.toString()))
-                  }
-                >
-                  {members.map((member: MemberModel) => {
-                    return (
-                      <MenuItem key={member.id} value={member.id}>
-                        {member.fullName}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-              </FormControl>
-            </Grid>
-            </>
-            :
-<>
-            <Grid item xs={12} sm={6}>
-              <FormControl fullWidth
-              >
-                
-                <InputLabel id="demo-simple-select-label">
-                  {Strings.bookName}
-                </InputLabel>
-                <Select
-                  name="book"
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={id != undefined ? singleBarrow?.member?.id : bookId}
-                  label={Strings.departments}
-                  onChange={(e) =>
-                    setBookId(Number.parseInt(e.target.value.toString()))
-                  }
-                >
-                  {books.map((book: BookModel) => {
-                    return (
-                      <MenuItem key={book.id} value={book.id}>
-                        {book.bookName}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">
-                  {Strings.memberName}
-                </InputLabel>
-                <Select
-                  name="member"
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={id != undefined ? singleBarrow?.member?.id : bookId}
+                  value={id != undefined ? singleBarrow?.member?.id : memberId}
                   label={Strings.departments}
                   onChange={(e) =>
                     setMemberId(Number.parseInt(e.target.value.toString()))

@@ -43,6 +43,7 @@ import Books from "../pages/books/Books";
 import AddMember from "../pages/member/addMember";
 import Barrows from "../pages/barrows/Barrows";
 import AddBarrow from "../pages/barrows/addBarrow";
+import { findById } from "../features/member/membersSlice";
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({

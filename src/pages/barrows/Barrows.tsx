@@ -116,7 +116,7 @@ function Barrows() {
           </Typography>
         </Grid>
         <Grid item xs={6} alignItems="" >
-          {/* <Button
+          <Button
             variant="outlined"
             endIcon={<Add />}
             sx={{
@@ -130,7 +130,7 @@ function Barrows() {
             }}
           >
             {Strings.add + Strings.addBarrow}
-          </Button> */}
+          </Button>
         </Grid>
       </Grid>
 
@@ -138,7 +138,7 @@ function Barrows() {
         <DataTable
           row={BarrowsColumns}
           data={barrowData}
-          action={[]}
+          action={actionColumn}
         />
       ) : (
         <div>No data returned</div>

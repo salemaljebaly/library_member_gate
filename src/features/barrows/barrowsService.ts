@@ -25,7 +25,7 @@ const getAll = async (access_token: string) => {
         Authorization: `Bearer ${access_token}`,
       },
     }
-  const response = await axios.get(API_URL + path , config);
+  const response = await axios.get(API_URL + path + '/bymember' , config);
   let data : BarrowModel[];
   if(response.data){
       data  = response.data
