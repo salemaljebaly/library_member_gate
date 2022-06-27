@@ -59,11 +59,11 @@ import Strings from "../../utils/Strings";
       headerName: Strings.bookPages,
       width: 80
     },
-    {
-      field: 'bookCount',
-      headerName: Strings.bookCount,
-      width: 80
-    },
+    // {
+    //   field: 'bookCount',
+    //   headerName: Strings.bookCount,
+    //   width: 80
+    // },
     {
       field: 'isbn',
       headerName: Strings.isbn,

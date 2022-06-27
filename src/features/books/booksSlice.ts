@@ -182,7 +182,8 @@ export const bookSlice = createSlice({
       console.log(action.payload);
       state.singleBook = {
         ...state.singleBook, 
-        [action.payload.name] : action.payload.value
+        [action.payload.name] : action.payload.value,
+        'bookCount' : 0
       }
     }
     // ------------------------------------------------------------------ //
