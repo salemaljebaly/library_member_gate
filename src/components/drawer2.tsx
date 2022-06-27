@@ -22,7 +22,6 @@ import Strings from "../utils/Strings";
 import { ListItemButton, Menu, MenuItem, ListItem, Theme } from "@mui/material";
 import AppLogo from "./appLogo";
 import { AccountCircle } from "@mui/icons-material";
-import BadgeIcon from '@mui/icons-material/Badge';
 import theme from "../theme/theme";
 import {
   Link,
@@ -157,7 +156,9 @@ export default function MiniDrawer() {
   };
 
   const handleUserProfile = () => {
-    navigate(`member/${member?.id}`);
+    const memberId = JSON.parse(localStorage.getItem("member")!).id;
+    dispatch(findById(memberId))
+    navigate(`member/${memberId}`);
     setAnchorEl(null);
   }
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
