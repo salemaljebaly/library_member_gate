@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DataGrid, GridColDef, GridEditModes, GridValueGetterParams } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridDensityTypes, GridEditModes, GridValueGetterParams } from "@mui/x-data-grid";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import {
   DeleteForeverOutlined,
@@ -30,20 +30,33 @@ interface Props {
 export default function DataTable({  row, data, action }: Props) {
   const dispatch = useDispatch();
   // TODO fix navigate when user delete
+  const localizedTextsMap = {
+    columnMenuUnsort: Strings.columnMenuUnsort,
+    columnMenuSortAsc: Strings.columnMenuSortAsc,
+    columnMenuSortDesc: Strings.columnMenuSortDesc,
+    columnMenuFilter: Strings.columnMenuFilter,
+    columnMenuHideColumn: Strings.columnMenuHideColumn,
+    columnMenuShowColumns: Strings.columnMenuShowColumns
+  }
 
-
-
-  
   return (
     <>
       <div style={{ height: 400, width: "100%" }}>
         <DataGrid
+          componentsProps={{
+            toolbar: {
+              showQuickFilter: true,
+                 quickFilterProps: { debounceMs: 500 },
+           },
+          }}
+          density={GridDensityTypes.Standard}
           autoPageSize={true}
           rows={data}
           columns={row.concat(action)}
           pageSize={5}
           rowsPerPageOptions={[5]}
           editMode={GridEditModes.Row}
+          localeText={localizedTextsMap}
           // checkboxSelection
         />
       </div>

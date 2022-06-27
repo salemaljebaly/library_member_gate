@@ -119,5 +119,13 @@ export default class{
   static bookCount: string = 'عدد النسخ';
   static isbn: string = 'ISBN';
   static memberLogin: String = 'بوابة اعضاء المكتبة';
+  // --------------------------------------------------- //
+  static columnMenuUnsort: String = 'إلغاء الترتيب';
+  static columnMenuSortAsc: String = 'ترتيب تصاعدي';
+  static columnMenuSortDesc: String = 'ترتيب تنازلي';
+  static columnMenuFilter: String = 'فلترة';
+  static columnMenuHideColumn: String = 'اخفاء الحقل';
+  static columnMenuShowColumns: String = 'التحكم في حالة الاعمدة';
+  // --------------------------------------------------- //
 
 }
