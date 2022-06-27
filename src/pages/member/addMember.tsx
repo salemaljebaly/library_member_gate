@@ -79,14 +79,11 @@ import { MemberType } from "../../features/member/memberType.enum";
     // get user data from id passed when register init
     useEffect(() => {
       // get all department 
-      dispatch(getAll());
-      if(processDone){
-        navigate('/members')
-      }
       // ----------------------------------------------------------------------- //
       // TODO fix update
       // git user by id
       if (id != undefined) {
+        console.log(singleMember);
         dispatch(findById(Number(id)));
       }
       // ----------------------------------------------------------------------- //
@@ -155,14 +152,11 @@ import { MemberType } from "../../features/member/memberType.enum";
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   // id != undefined ? singleMember.department.id :
-                  value={id != undefined ? singleMember.department.id : department} 
+                  value={singleMember.department.id} 
                   label={Strings.departments}
-                  onChange={(e) => setDepartment(Number.parseInt(e.target.value.toString()))}
                 >
                   
-              {Departments.map((dep : DepartmentModel) => {
-                  return <MenuItem key={dep.id} value={dep.id}>{dep.dep_name}</MenuItem>
-              })}
+                   <MenuItem key={singleMember.department.id} value={singleMember.department.id}>{singleMember.department.dep_name}</MenuItem>
                 </Select>
               </FormControl>
                 </Grid>
