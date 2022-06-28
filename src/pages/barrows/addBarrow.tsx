@@ -56,14 +56,16 @@ function AddBarrow() {
   // desctruct memebers from user state [ userSlice]
   const { singleBarrow, barrows, isError, isSucces, isLoading, message, processDone } =
   useSelector((state: any) => state.barrows);
-    // ----------------------------------------------------------------------------------- //
-    const { members } = useSelector((state: any) => state.members);
+  // ----------------------------------------------------------------------------------- //
+  const { member } = useSelector((state: any) => state.auth);
+  // ----------------------------------------------------------------------------------- //
+  const { members } = useSelector((state: any) => state.members);
   // ----------------------------------------------------------------------------------- //
   const { books } = useSelector((state: any) => state.books);
   // ----------------------------------------------------------------------------------- //
   const [bookId, setBookId] = React.useState(1);
   // ----------------------------------------------------------------------------------- //
-  const [memberId, setMemberId] = React.useState(1);
+  const [memberId, setMemberId] = React.useState(member.id);
   // handle submit form
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -79,6 +81,7 @@ function AddBarrow() {
           console.log("you must return book before 14 days");
           console.log(nextDate(14));
         }
+        
       dispatch(add({ bookId: bookId, memberId: memberId, data: singleBarrow }));
     } else {
       // update user by id
@@ -106,9 +109,8 @@ function AddBarrow() {
     dispatch(getAllBooks())
     // // get all member
     dispatch(getAllMembers());
-    console.log('get book' + processDone);
     if (processDone) {
-      navigate("/books");
+      navigate("/barrows");
     }
     // ----------------------------------------------------------------------- //
     // TODO fix update
@@ -169,7 +171,7 @@ function AddBarrow() {
                   name="book"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={bookId}
+                  value={id != undefined ? singleBarrow.book.id : bookId}
                   label={Strings.departments}
                   onChange={(e) =>
                     setBookId(Number.parseInt(e.target.value.toString()))
@@ -194,16 +196,13 @@ function AddBarrow() {
                   name="member"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={  members.id}
+                  value={id != undefined ? singleBarrow.member.id : memberId}
                   label={Strings.departments}
-                  onChange={(e) =>
-                    setMemberId(Number.parseInt(e.target.value.toString()))
-                  }
                 >
-                  {members.map((member: MemberModel) => {
+                  {members.map((currentMember: MemberModel) => {
                     return (
-                      <MenuItem key={member.id} value={member.id}>
-                        {member.fullName}
+                      <MenuItem key={currentMember.id} value={currentMember.id}>
+                        {currentMember.fullName}
                       </MenuItem>
                     );
                   })}
@@ -224,7 +223,7 @@ function AddBarrow() {
                   name="book"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={id != undefined ? singleBarrow?.book?.id : bookId}
+                  value={ bookId}
                   label={Strings.departments}
                   onChange={(e) =>
                     setBookId(Number.parseInt(e.target.value.toString()))
@@ -249,16 +248,13 @@ function AddBarrow() {
                   name="member"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={id != undefined ? singleBarrow?.member?.id : memberId}
+                  value={memberId}
                   label={Strings.departments}
-                  onChange={(e) =>
-                    setMemberId(Number.parseInt(e.target.value.toString()))
-                  }
                 >
-                  {members.map((member: MemberModel) => {
+                  {members.map((currentMember: MemberModel) => {
                     return (
-                      <MenuItem key={member.id} value={member.id}>
-                        {member.fullName}
+                      <MenuItem key={currentMember.id} value={currentMember.id}>
+                        {currentMember.fullName}
                       </MenuItem>
                     );
                   })}
