@@ -157,7 +157,8 @@ export default function MiniDrawer() {
 
   const handleUserProfile = () => {
     const memberId = JSON.parse(localStorage.getItem("member")!).id;
-    dispatch(findById(memberId))
+    console.log('id === ' + memberId)
+    dispatch(findById(Number(memberId)))
     navigate(`member/${memberId}`);
     setAnchorEl(null);
   }

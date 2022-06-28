@@ -82,9 +82,13 @@ import { MemberType } from "../../features/member/memberType.enum";
       // ----------------------------------------------------------------------- //
       // TODO fix update
       // git user by id
+      
+      if(processDone){
+        navigate('/books')
+      }
+      console.log(singleMember);
       if (id != undefined) {
-        console.log(singleMember);
-        dispatch(findById(Number(id)));
+        
       }
       // ----------------------------------------------------------------------- //
     }, [dispatch, processDone]);

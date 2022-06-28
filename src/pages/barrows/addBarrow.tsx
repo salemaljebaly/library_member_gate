@@ -106,8 +106,9 @@ function AddBarrow() {
     dispatch(getAllBooks())
     // // get all member
     dispatch(getAllMembers());
+    console.log('get book' + processDone);
     if (processDone) {
-      navigate("/barrows");
+      navigate("/books");
     }
     // ----------------------------------------------------------------------- //
     // TODO fix update

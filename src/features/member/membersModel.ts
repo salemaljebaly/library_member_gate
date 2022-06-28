@@ -32,7 +32,7 @@ export interface MemberModelFromToken {
   memberType: MemberType
   iat: 1650657067;
   access_token: string;
-}
+}  
 
 // --------------------------------------------------- //
 // return user from redux state
