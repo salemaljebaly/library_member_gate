@@ -75,14 +75,13 @@ function AddBarrow() {
         Object.keys(singleBarrow).length > 0 && true;
         // console.log(`bookId ${bookId} memberId ${memberId} data ${singleBarrow}`)
         if(singleBarrow.memberType == MemberType.Student){
-          console.log("you must return book before 7 days");
-          console.log(nextDate(7));
+          alert(' يجب عليك ارجاع الكتاب قبل تاريخ' + nextDate(7)) 
         } else {
-          console.log("you must return book before 14 days");
-          console.log(nextDate(14));
+          
+          alert(' يجب عليك ارجاع الكتاب قبل تاريخ' + nextDate(15)) 
         }
         
-      dispatch(add({ bookId: bookId, memberId: memberId, data: singleBarrow }));
+      // dispatch(add({ bookId: bookId, memberId: memberId, data: singleBarrow }));
     } else {
       // update user by id
       if(singleBarrow.memberType == MemberType.Student){
@@ -96,11 +95,17 @@ function AddBarrow() {
       // ----------------------------------------------------------------------- //
     }
   };
+  function addDays(originalDate : any, days: any){
+    var cloneDate = new Date(originalDate.valueOf());
+    cloneDate.setDate(cloneDate.getDate() + days);
+    return cloneDate;
+  }
+
   // ----------------------------------------------------------------------------------- //
   const nextDate = (days : number) => {
-    var today = new Date();
-    var next = new Date(today.getFullYear(), today.getMonth(), today.getDate() + days).toLocaleDateString();
-    return next;
+    var today = new Date(singleBarrow.returnDate);
+    addDays(today,days);
+    return addDays(today,days).toLocaleDateString().split('T')[0];
   }
   // -------------------------------------------------------------- //
   // get user data from id passed when register init
