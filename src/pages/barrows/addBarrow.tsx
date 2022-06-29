@@ -74,14 +74,15 @@ function AddBarrow() {
       const singleUserObjectHasDataOrNot: boolean =
         Object.keys(singleBarrow).length > 0 && true;
         // console.log(`bookId ${bookId} memberId ${memberId} data ${singleBarrow}`)
-        if(singleBarrow.memberType == MemberType.Student){
-          alert(' يجب عليك ارجاع الكتاب قبل تاريخ' + nextDate(7)) 
-        } else {
-          
+        console.log('test' + member.memberType);
+        if(member.memberType == MemberType.Teacher){
           alert(' يجب عليك ارجاع الكتاب قبل تاريخ' + nextDate(15)) 
+        } else if(member.memberType == MemberType.Student){
+          
+          alert(' يجب عليك ارجاع الكتاب قبل تاريخ' + nextDate(7)) 
         }
         
-      // dispatch(add({ bookId: bookId, memberId: memberId, data: singleBarrow }));
+      dispatch(add({ bookId: bookId, memberId: memberId, data: singleBarrow }));
     } else {
       // update user by id
       if(singleBarrow.memberType == MemberType.Student){

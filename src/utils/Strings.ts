@@ -103,7 +103,7 @@ export default class{
   static bookPages: string = 'عدد الصفحات';
   static bookPublisher: string = 'دار النشر';
   static bookDescription: string = 'الوصف';
-  static returnDate: string = 'تاريخ الاعادة';
+  static returnDate: string = 'تاريخ الاعارة';
   static stayed: string = 'موجود';
   static barrowed: string = 'تمت الاعارة';
   static state: string = 'حالة الكتاب';
