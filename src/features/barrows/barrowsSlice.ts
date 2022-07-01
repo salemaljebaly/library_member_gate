@@ -3,6 +3,7 @@ import authService from "./barrowsService";
 import {  BarrowModel, BarrowState, BarrowsModel } from "./barrowsModel";
 import { RootState } from "../../app/store";
 import { MemberModelFromToken } from "../member/membersModel";
+import { BookModel } from "../books/booksModel";
 
 // Get barrow from local storage
 const member = JSON.parse(localStorage.getItem("member")!) as MemberModelFromToken;
@@ -132,6 +133,7 @@ export const findById = createAsyncThunk (
     }
   }
 );
+
 // ------------------------------------------------------------------------------------------- //
 // update barrow by id
 export const searchIn = createAsyncThunk (
@@ -269,6 +271,7 @@ export const barrowSlice : any = createSlice({
         state.message = action.payload as string[]; // get value when reject
         state.barrows = [];
       })
+      
       // ------------------------------------------------------------------ //
       // find barrow by id
       // TODO return fix  delete message 

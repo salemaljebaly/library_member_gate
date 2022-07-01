@@ -22,7 +22,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AppDispatch } from "../../app/store";
 import Notification from "../../components/common/Notification";
 import { DepartmentModel } from "../../features/department/departmentModel";
-import { getAll as getAllBooks } from "../../features/books/booksSlice";
+import { getAll as getAllBooks, updateBookById } from "../../features/books/booksSlice";
 import { getAll as getAllMembers } from "../../features/member/membersSlice";
 import {
   handleChangeData,
@@ -34,6 +34,7 @@ import Strings from "../../utils/Strings";
 import { BookModel } from "../../features/books/booksModel";
 import { MemberModel } from "../../features/member/membersModel";
 import { MemberType } from "../../features/member/memberType.enum";
+import { BookStateType } from "../../features/books/bookType";
 
 function AddBarrow() {
   // ------------------------------------------------------------------------------- //
@@ -80,9 +81,16 @@ function AddBarrow() {
         } else if(member.memberType == MemberType.Student){
           
           alert(' يجب عليك ارجاع الكتاب قبل تاريخ' + nextDate(7)) 
-        }
+        } 
         
       dispatch(add({ bookId: bookId, memberId: memberId, data: singleBarrow }));
+      console.log(singleBarrow.book)
+      dispatch(updateBookById({
+        id: bookId,
+        bookData : {
+          state : BookStateType.BARROWED
+            }
+      }));
     } else {
       // update user by id
       if(singleBarrow.memberType == MemberType.Student){

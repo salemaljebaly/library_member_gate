@@ -114,6 +114,26 @@ export const updateById = createAsyncThunk (
     }
   }
 );
+
+
+// ------------------------------------------------------------------------------------------- //
+// update book by id
+export const updateBookById = createAsyncThunk (
+  "book/updatebookById", 
+  async ({id, bookData}:{id:number, bookData: any}, thunkAPI) => {
+    try {
+      return await authService.updateBookById(member.access_token, id!, bookData);
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 // ------------------------------------------------------------------------------------------- //
 // update book by id
 export const findById = createAsyncThunk (
@@ -268,6 +288,33 @@ export const bookSlice = createSlice({
         state.books = action.payload;
       })
       .addCase(updateById.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.processDone = false;
+        state.message = action.payload as string[]; // get value when reject
+        state.books = [];
+      })
+
+      
+      // ------------------------------------------------------------------ //
+      // update book by id
+      // TODO return fix  update message 
+      .addCase(updateBookById.pending, (state) => {
+        
+        state.isLoading = true;
+        state.isError = false;
+        state.isSucces = false;
+        state.processDone = false;
+        state.message = [];
+      })
+      .addCase(updateBookById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSucces = true;
+        state.processDone = true;
+        state.books = action.payload;
+      })
+      .addCase(updateBookById.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.processDone = false;

@@ -1,6 +1,7 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import Strings from "../../utils/Strings";
+import { BookModel } from "../books/booksModel";
 import { BarrowModel } from "./barrowsModel";
 
 const API_URL = Strings.API_URL;
@@ -60,6 +61,26 @@ const updateById  = async (access_token: string, id : number, data:Partial<Barro
 }
 
 // update user from database
+const updateBookById = async (
+  access_token: string,
+  id: number,
+  userData: Partial<BookModel>
+) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  };
+  await axios.patch(
+    API_URL + path + "/" + id , 
+    userData,
+    config
+  );
+  const retrunBookData = findByID(access_token, id);
+  return retrunBookData;
+};
+
+// update user from database
 const findByID  = async (access_token: string, id : number) => {
     
     const config = {
@@ -113,7 +134,8 @@ const authService = {
     findByID,
     searchIn,
     logout,
-    countAll
+    countAll,
+    updateBookById
 }
 
 export default authService;
